@@ -8,9 +8,21 @@ const readdir = util.promisify(fs.readdir);
 
 let ms = null;
 
-async function loadDir () {
+async function getFilesInBozzDir () {
   const bozzFolderPath    = path.resolve(process.cwd(), `bozz`);
-  const bozzFiles         = (await readdir(bozzFolderPath)).map(file => path.resolve(bozzFolderPath, file));
+  let bozzFiles           = [];
+
+  try {
+    bozzFiles = (await readdir(bozzFolderPath)).map(file => path.resolve(bozzFolderPath, file));
+  } catch (e) {
+    console.log(`[bozz-load-dir] warning - No "bozz" directory found`);
+  }
+
+  return bozzFiles;
+}
+
+async function loadDir () {
+  const bozzFiles         = await getFilesInBozzDir();
   const bozzEventsFiles   = bozzFiles.filter(file => file.match(/\.events\.js$/g)).map(file => require(file));
   const bozzRequestsFiles = bozzFiles.filter(file => file.match(/\.requests\.js$/g)).map(file => require(file));
 
