@@ -1,0 +1,15 @@
+{
+  "name": "bozz-load-dir",
+  "version": "1.0.0",
+  "description": "Be able to load a dir with bozz based files",
+  "main": "index.js",
+  "repository": "https://github.com/weview-app/bozz",
+  "author": "Florian Bezagu <florian@bezagu.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0"
+  }
+}

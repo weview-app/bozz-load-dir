@@ -1,0 +1,14 @@
+node_modules
+bower_components
+.tmp
+
+npm-debug.log
+*~
+*#
+.DS_STORE
+.idea
+.node_history
+.env.json
+.env
+_*
+.vscode
