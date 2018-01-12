@@ -29,7 +29,7 @@ MyProject
     |-- book.events.js
 ```
 
-#### user.events.js
+#### user.events.js (Object version)
 
 ```javascript
 const UserSession = require(`./model/UserSession`);
@@ -38,6 +38,16 @@ module.exports = {
   `user:loggedIn`  : UserSession.start,
   `user:loggedOut` : UserSession.end,
 };
+```
+
+#### user.events.js (Method version)
+
+When you export a method insteadof an object, you have access to the `ms` instance in this method :
+```javascript
+module.exports = ms => ({
+  `user:loggedIn`  : user => ms.request(`user-session:start`, user),
+  `user:loggedOut` : user => ms.request(`user-session:end`, user),
+});
 ```
 
 ## Usage

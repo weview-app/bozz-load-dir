@@ -1,6 +1,6 @@
 {
   "name": "bozz-load-dir",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Be able to load a dir with bozz based files",
   "main": "index.js",
   "repository": "https://github.com/weview-app/bozz",

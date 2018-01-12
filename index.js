@@ -15,8 +15,16 @@ async function loadDir () {
   const bozzRequestsFiles = bozzFiles.filter(file => file.match(/\.requests\.js$/g)).map(file => require(file));
 
   try {
-    _.forEach(bozzEventsFiles, events => ms.onEvents(events))
-    _.forEach(bozzRequestsFiles, requests => ms.onRequests(requests))
+    _.forEach(bozzEventsFiles, events => {
+      let eventsObj = events;
+      if (typeof events === `function`) { eventsObj = events(ms); }
+      ms.onEvents(eventsObj);
+    })
+    _.forEach(bozzRequestsFiles, requests => {
+      let requestsObj = requests;
+      if (typeof requests === `function`) { requestsObj = requests(ms); }
+      ms.onRequests(requestsObj);
+    })
   } catch (e) {
     console.log(e);
   }
